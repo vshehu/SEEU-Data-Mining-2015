@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -20,9 +21,24 @@ namespace SEEU_Data_Mining
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            LevensteinDistance d = new LevensteinDistance();
-            MessageBox.Show(d.Kalkulo("Visar", "test").ToString());
+            StreamReader sr = new StreamReader("c:\\data\\sq_AL.dic");
+
+            List<string> gjitheFjalet = new List<string>();
+
+            while (sr.EndOfStream != true)
+            {
+                gjitheFjalet.Add(sr.ReadLine().ToLower());
+            }
+
+
+            if (gjitheFjalet.Contains(txtFjala.Text.ToLower()))
+            {
+                MessageBox.Show("Fjala eshte shkruar mire");
+            }
+            else
+            {
+                 MessageBox.Show("Fjala eshte shkruar gabim");
+            }
         }
     }
 }
